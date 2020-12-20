@@ -1,24 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Cat from "./src/component/Cat"
-import Topbar from "./src/component/Topbar"
+import * as React from 'react';
+import { Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-
-export default function App() {
+function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Topbar />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+function ProfileScreen({ route }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile!</Text>
+    </View>
+  );
+}
+
+const Tab = createMaterialBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
